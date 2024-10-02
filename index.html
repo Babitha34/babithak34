@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- AOS Animation CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #0d0f26;
+    color: white;
+    overflow-x: hidden;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: transparent;
+}
+
+/* Style for the logo */
+.logo {
+    border-radius: 50%; /* Rounded corners */
+    border: 4px solid #b4b4b4; /* High border */
+    box-shadow: 0 8px 10px rgba(255, 255, 255, 0.3); /* Border shadow */
+    transition: transform 0.3s ease; /* Smooth scaling effect */
+}
+
+/* Hover effect for logo */
+.logo:hover {
+    transform: scale(1); /* Slightly increase size on hover */
+}
+
+/* Navigation styling */
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    background-color: #0d0f26; /* Background color for nav */
+}
+
+nav ul li {
+    position: relative;
+}
+
+nav ul li a {
+    text-decoration: none;
+    font-size: 18px;
+    color: white;
+    padding: 10px 15px;
+    transition: color 0.3s ease-in-out; /* Smooth color transition */
+}
+
+/* Hover effect */
+nav ul li a:hover {
+    color: #6c63ff; /* Change color on hover */
+}
+
+/* Underline slide-in effect */
+nav ul li a::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #6c63ff;
+    transition: width 0.3s ease-in-out;
+}
+
+/* On hover, the underline slides in */
+nav ul li a:hover::before {
+    width: 100%;
+}
+
+/* Navigation Slide-in Animation on Page Load */
+nav {
+    opacity: 0;
+    transform: translateY(-30px); /* Slide nav up initially */
+    animation: slideIn 0.8s ease forwards; /* Animation on page load */
+}
+
+/* Keyframes for slide-in */
+@keyframes slideIn {
+    to {
+        opacity: 1;
+        transform: translateY(0); /* Bring nav back to its original position */
+    }
+}
+
+/* Icons styling */
+.icons a {
+    margin-left: 10px;
+    font-size: 24px;
+    color: white;
+    transition: box-shadow 0.3s ease, transform 0.3s ease; /* Smooth shadow & scale transition */
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.3); /* Add shadow around icons */
+    border-radius: 50%; /* Circle shape around icons */
+    padding: 10px;
+}
+
+/* Hover effect for icons */
+.icons a:hover {
+    transform: scale(1.2); /* Increase size on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4); /* Increase shadow on hover */
+}
+
+/* Let's Connect button */
+.connect-btn {
+    background-color: #6c63ff;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Border shadow */
+}
+
+/* Hover effect for Let's Connect button */
+.connect-btn:hover {
+    background-color: #524ddb; /* Darken the button color */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4); /* Increase shadow on hover */
+}
+
+.hero {
+    display: flex; /* Flexbox layout */
+    align-items: center; /* Center items vertically */
+    justify-content: space-between; /* Space between text and image */
+    padding: 20px;
+    height: 100vh; /* Full viewport height */
+}
+
+.intro-text {
+    max-width: 600px; /* Max width for the text */
+    margin: 90px;
+}
+
+.welcome-msg {
+    font-size: 1.5em; /* Font size for the welcome message */
+}
+
+h1 {
+    font-size: 2.5em; /* Font size for the main heading */
+    margin: 10px 0;
+}
+
+.description {
+    font-size: 1em; /* Font size for the description */
+    line-height: 1.5; /* Line height for readability */
+    margin: 10px 0;
+}
+
+.connect-btn {
+    display: inline-block; /* Button display */
+    padding: 10px 20px; /* Button padding */
+    background-color: #007BFF; /* Button color */
+    color: white; /* Button text color */
+    text-decoration: none; /* Remove underline from link */
+    border-radius: 5px; /* Rounded corners for button */
+    margin-top: 10px; /* Space above button */
+}
+
+.connect-btn:hover {
+    background-color: #0056b3; /* Darker color on hover */
+}
+
+.astronaut {
+    flex-shrink: 0; /* Prevent image from shrinking */
+    margin: 100px;
+}
+
+.astronaut-image {
+    width: 400px; /* Width for the image */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 30px; /* Rounded corners for the image */
+    transition: transform 0.3s; /* Transition effect for zooming */
+}
+
+.astronaut-image:hover {
+    transform: scale(1.05); /* Zoom in effect on hover */
+}
+
+/* Disable AOS on hover */
+.astronaut-image:hover[data-aos] {
+    pointer-events: none; /* Disable pointer events on hover */
+}
+
+/* Optional: Add this to remove AOS styles while hovered */
+.astronaut-image:hover {
+    opacity: 1; /* Ensures the image is fully visible */
+}
+.about-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  
+  .about-image {
+    flex: 1;
+    max-width: 50%;
+    overflow: hidden;
+    transition: transform 0.4s ease-in-out;
+  }
+  
+  .about-image img {
+    width: 100%;
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 200px;
+    transition: transform 0.4s ease-in-out;
+  }
+  
+  .about-image:hover img {
+    transform: scale(1.05); /* Zoom in effect on hover */
+  }
+  
+  .about-text {
+    flex: 1;
+    padding-left: 50px;
+  }
+  
+  .about-text h2 {
+    font-size: 36px;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+  
+  .about-text p {
+    font-size: 16px;
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+  
+  .about-text h4 {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+  
+  .about-text ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .about-text ul li {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #ccc;
+  }
+  
+  /* Styling the profile image within the text */
+  .profile-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    border: 3px solid #fff; /* White border for contrast */
+  }
+  
+  /* AOS animations */
+  [data-aos="zoom-in"] {
+    opacity: 0;
+    transition-property: opacity, transform;
+    transform: scale(0.8); /* Start smaller for animation */
+  }
+  
+  [data-aos="zoom-in"].aos-animate {
+    opacity: 1;
+    transform: scale(1); /* Normal size */
+  }
+  
+  [data-aos="fade-left"] {
+    opacity: 0;
+    transition-property: opacity, transform;
+    transform: translateX(50px); /* Slide from the right */
+  }
+  
+  [data-aos="fade-left"].aos-animate {
+    opacity: 1;
+    transform: translateX(0); /* End position */
+  }
+
+/* Skills Section */
+.skills-section {
+    padding: 50px 0;
+    display: flex;
+    justify-content: center;
+}
+
+/* Skills Container */
+.skills-container {
+    text-align: center;
+    max-width: 800px;
+    background-color: #1f1f2b; /* Background for the box */
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
+}
+
+/* Title and Description */
+.skills-container h2 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.description {
+    font-size: 1rem;
+    color: #ccc;
+    margin-bottom: 30px;
+}
+
+/* Skills Box */
+.skills-box {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping */
+    justify-content: space-between; /* Space items evenly */
+}
+
+/* Skill Box */
+.skill-box {
+    text-align: center;
+    flex: 0 1 calc(33.33% - 20px); /* Allow 3 items per row with margin */
+    margin: 10px; /* Spacing between circles */
+}
+
+/* Circle Progress Bar */
+.circle {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #0d0f26; /* Default background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 15px; /* Center the circle */
+}
+
+.circle span {
+    position: absolute;
+    font-size: 1.2rem;
+    color: white;
+    font-weight: bold;
+}
+
+h3 {
+    font-size: 1.2rem;
+    margin-top: 10px;
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+    .skills-box {
+        flex-direction: column; /* Stack in a single column on mobile */
+        align-items: center; /* Center items */
+    }
+
+    .skill-box {
+        margin-bottom: 20px; /* Space between boxes on mobile */
+        flex: 0 1 100%; /* Each box takes full width on mobile */
+    }
+}
+h2 {
+  font-size: 36px;
+  text-align: center;
+  margin-top: 100px;
+  color: white;
+}
+
+.portfolio {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px;
+  gap: 20px; /* Space between the boxes */
+}
+
+.portfolio-item {
+  margin-top: 30px;
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
+  width: 25%; /* Makes 4 items fit per row */
+  height:40%;
+  background-color: #333;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+  position: relative;
+  overflow: hidden; /* Hide overflow to allow the sliding overlay */
+}
+
+.portfolio-item:hover {
+  transform: scale(1.05);
+}
+
+/* Image styling */
+.portfolio-item img {
+  width: 100%;
+  height: 180px; /* Fixed height for the image */
+  object-fit: cover;
+  border-radius: 8px 8px 0 0;
+}
+
+/* Transparent overlay */
+.portfolio-item .transparent-overlay {
+  position: absolute;
+  top: 100%; /* Start below the box */
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(184, 21, 97, 0.6); /* Transparent black */
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  transition: top 0.4s ease-in-out; /* Smooth slide-in effect */
+}
+
+/* Slide the overlay up on hover */
+.portfolio-item:hover .transparent-overlay {
+  top: 0; /* Move the overlay to the top when hovered */
+}
+
+.transparent-overlay h3 {
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  color: white;
+}
+
+.transparent-overlay p {
+  margin: 10px 0 0 0;
+  color: #f7ecf3;
+}
+
+/* Overlay for full-screen effect */
+.overlay {
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8); /* Transparent background */
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.overlay-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  color: black;
+  width: 80%;
+  max-width: 900px;
+  text-align: center;
+}
+
+.overlay-content img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.close-btn {
+  background-color: red;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  border-radius: 5px;
+}
+
+/* Contact Container Styling */
+.contact-container {
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+    padding: 20px;
+    margin-left: 360px;
+    margin-top: 90px;
+    transition: transform 0.3s;
+}
+
+/* AOS Animations and hover for form elements */
+h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+    color: #ffffff;
+}
+
+p {
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+form {
+    margin-bottom: 30px;
+    transition: all 0.3s ease-in-out;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 30px;
+    background-color: #383838;
+    color: #000;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+input:hover, textarea:hover {
+    background-color: #444;
+}
+
+input:focus, textarea:focus {
+    background-color: #505050;
+    transform: scale(1.02);
+}
+
+button {
+    padding: 15px 30px;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 20px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    width: 30%;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+/* Social Icons Hover Effect */
+.social-icons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.social-icons a {
+    margin: 0 15px;
+    transition: transform 0.3s ease;
+}
+
+.social-icons a:hover {
+    transform: scale(1.1);
+}
+
+.social-icons a img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+.social-icons a img:hover {
+    transform: scale(1.15);
+}
+
+footer {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #f3f3f3;
+}
+
+.footer-content {
+    margin-bottom: 20px;
+}
+
+.logo {
+    font-size: 40px;
+    font-weight: 600;
+    color: #000;
+}
+
+.dot {
+    color: #A020F0;
+}
+
+.email {
+    font-size: 16px;
+    color: #555;
+}
+
+.footer-icons {
+    margin: 20px 0;
+}
+
+.footer-icons a {
+    text-decoration: none;
+    color: #000;
+    margin: 0 15px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.footer-icons a:hover {
+    color: #A020F0;
+}
+
+.copyright {
+    font-size: 14px;
+    color: #555;
+}
+    </style>
+</head>
+<body>
+    <header>
+        <img src="b logo.jpg" class="logo" height="100" width="100">
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about me">About Me</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact me">Contact Me</a></li>
+            </ul>
+        </nav>
+        
+        <div class="icons">
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+        <a href="#" class="connect-btn">Let's Connect</a>
+        </header>
+    </header>
+    
+    <section class="hero" id="home">
+        <div class="intro-text" data-aos="fade-up">
+            <p class="welcome-msg">Welcome to my Portfolio</p>
+            <h1>Hi! I'm BABITHA</h1>
+            <p class="description">
+                I am a passionate UI/UX designer with a keen eye for detail and a love for crafting intuitive digital experiences. My work focuses on making complex interfaces easy to use while delivering beautiful and effective solutions. Let’s work together to bring innovative ideas to life and make the digital world more user-friendly!
+            </p>
+            <a href="#" class="connect-btn">Let's Connect</a>
+        </div>
+        <div class="astronaut" data-aos="zoom-in">
+            <img src="banjan.PNG" alt="Astronaut Image" class="astronaut-image" data-aos="zoom-in">
+        </div>
+    </section>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+    AOS.init({
+        disable: function() {
+            // Disable AOS on hover
+            return document.querySelector('.astronaut-image:hover') !== null;
+        }
+    });
+</script>
+    </script>
+
+    <section  id="about me">
+    <div class="about-container">
+        <!-- About Me Image -->
+        <div class="about-image" data-aos="zoom-in">
+            <img src="Capture.PNG" height="10" width="10" >
+        </div>
+    
+        <!-- Text Section -->
+        <div class="about-text" data-aos="fade-left">
+            <h2>About Me</h2>
+            <p>
+                I am a full stack web developer with a passion for creating interactive and responsive web applications.
+                I have experience with JavaScript, React, Java, Python, HTML & CSS, and more. 
+                
+            </p>
+            <h4>Skills</h4>
+            <ul>
+                <li>JavaScript</li>
+                <li>React</li>
+                <li>Java</li>
+                <li>Python</li>
+                <li>HTML and CSS</li>
+            </ul>
+        </div>
+    </div>
+    </section>
+    
+    <script>
+        AOS.init();
+    </script>
+    
+
+    <section class="skills-section" id="skills">
+        <div class="skills-container" data-aos="zoom-in">
+            <h2>My Skills</h2>
+            <p class="description">
+                I am skilled in various areas of design and development. Below are some of my key skills and their proficiency levels.
+            </p>
+
+            <div class="skills-box">
+                <!-- Skill 1 -->
+                <div class="skill-box">
+                    <div class="circle" data-percent="95">
+                        <span>95%</span>
+                    </div>
+                    <h3>HTML & CSS</h3>
+                </div>
+
+                <!-- Skill 2 -->
+                <div class="skill-box">
+                    <div class="circle" data-percent="80">
+                        <span>80%</span>
+                    </div>
+                    <h3>JavaScript</h3>
+                </div>
+
+                <!-- Skill 3 -->
+                <div class="skill-box">
+                    <div class="circle" data-percent="90">
+                        <span>90%</span>
+                    </div>
+                    <h3>React</h3>
+                </div>
+
+                <!-- Skill 4 -->
+                <div class="skill-box">
+                    <div class="circle" data-percent="75">
+                        <span>75%</span>
+                    </div>
+                    <h3>Java</h3>
+                </div>
+
+                <!-- Skill 5 -->
+                <div class="skill-box">
+                    <div class="circle" data-percent="85">
+                        <span>85%</span>
+                    </div>
+                    <h3>Python</h3>
+                </div>
+
+                <!-- Skill 6 -->
+                <div class="skill-box">
+                    <div class="circle" data-percent="70">
+                        <span>70%</span>
+                    </div>
+                    <h3>Database Management</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AOS JS and jQuery for circle progress -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init();
+
+        $(document).ready(function () {
+            $('.circle').each(function () {
+                let percent = $(this).data('percent');
+                let circle = $(this);
+                circle.css({
+                    'background': `conic-gradient(#6c63ff ${percent * 3.6}deg, #0d0f26 ${percent * 3.6}deg)`
+                });
+            });
+        });
+    </script>
+
+<section id="projects">
+<h2 class="myproject">My Project</h2>
+
+<div class="portfolio">
+    <!-- Box 1 -->
+    <div class="portfolio-item" onclick="openOverlay('temple')">
+      <img src="templewebsite.jpg" alt="Karinja Website">
+      <div class="transparent-overlay">
+        <h3>Web Design</h3>
+        <p>View Project</p>
+      </div>
+    </div>
+  
+    <!-- Box 2 -->
+    <div class="portfolio-item" onclick="openOverlay('myntra')">
+      <img src="myntraWebsite.jpg" alt="Myntra Website">
+      <div class="transparent-overlay">
+        <h3>Mobile App</h3>
+        <p>View Project</p>
+      </div>
+    </div>
+  
+    <!-- Box 3 -->
+    <div class="portfolio-item" onclick="openOverlay('travel')">
+      <img src="travelWebsite.jpg" alt="Travel Website">
+      <div class="transparent-overlay">
+        <h3>Web Design</h3>
+        <p>View Project</p>
+      </div>
+    </div>
+  </div>
+  
+
+  <!-- Transparent Overlay -->
+  <div id="overlay" class="overlay">
+    <div class="overlay-content">
+      <button class="close-btn" onclick="closeOverlay()">Close</button>
+      <div id="overlay-image-display">
+        <!-- Image or content will be loaded here when clicked -->
+      </div>
+    </div>
+  </div>
+</section>
+
+  <script>
+    function openOverlay(project) {
+      var content = '';
+
+      if (project === 'temple') {
+        content = `<img src="c:/Users/DELL/Downloads/templewebsite.jpg" alt="temple">`;
+      } else if (project === 'myntra') {
+        content = `<img src="c:/Users/DELL/Downloads/myntraWebsite.jpg" alt="myntra">`;
+      } else if (project === 'travel') {
+        content = `<img src="c:/Users/DELL/Downloads/travelWebsite.jpg" alt="travel">`;
+      }
+
+      document.getElementById('overlay-image-display').innerHTML = content;
+      document.getElementById('overlay').style.display = 'flex';
+    }
+
+    function closeOverlay() {
+      document.getElementById('overlay').style.display = 'none';
+    }
+  </script>
+<section id="contact me">
+<div class="contact-container" data-aos="fade-up">
+    <h1 data-aos="fade-down">Contact Me</h1>
+    <p data-aos="fade-right">Please fill out the form below to discuss any work opportunities.</p>
+    <form action="your-endpoint-here" data-aos="fade-left">
+        <input type="text" id="name" name="name" class="input-field" placeholder="Your Name" required>
+        <textarea id="message" name="message" class="textarea-field" placeholder="Your Message" rows="4" required></textarea>
+        <button type="submit" class="submit-btn" data-aos="zoom-in">Submit</button>
+    </form>
+    <div class="social-icons" data-aos="fade-up">
+        <a href="https://facebook.com" target="_blank"><img src="facebook.jpg" alt="Facebook" class="social-icon"></a>
+        <a href="https://twitter.com" target="_blank"><img src="twitter.jpg" alt="Twitter" class="social-icon"></a>
+        <a href="https://youtube.com" target="_blank"><img src="youtube.jpg" alt="YouTube" class="social-icon"></a>
+        <a href="https://instagram.com" target="_blank"><img src="instagram.jpg" alt="Instagram" height="50" width="50"  class="social-icon"></a>
+    </div>
+</div>
+</section>
+
+<footer>
+    <div class="footer-content">
+        <h2 class="logo">babi<span class="dot">.</span></h2>
+        <p class="email">babithak34@gmail.com</p>
+    </div>
+    <div class="footer-icons">
+        <a href="https://github.com" target="_blank">GitHub</a>
+        <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+        <a href="https://twitter.com" target="_blank">Twitter</a>
+    </div>
+    <p class="copyright">&copy; 2024 Babitha Kulal. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
